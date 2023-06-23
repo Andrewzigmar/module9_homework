@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+</head>
+<body>
+  <input type="text">
+  <button>Ведите число</button>
+  <div></div>
+ <script>
+function useRequest(url, callback) {
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+  
+  xhr.onload = function() {
+    if (xhr.status != 200) {
+      console.log('Статус ответа: ', xhr.status);
+    } else {
+      const result = JSON.parse(xhr.response);
+      if (callback) {
+        callback(result);
+      }
+    }
+  };
+  
+  xhr.onerror = function() {
+    console.log('Ошибка! Статус ответа: ', xhr.status);
+  };
+  
+  xhr.send();
+};
+
+
+
+function displayResult(apiData) {
+  let cards = '';
+  
+  apiData.forEach(item => {
+    const cardBlock = `div`;
+    cards = cards + cardBlock;
+  });
+  
+ 
+    
+  resultNode.innerHTML = cards;
+}
+
+let a 
+  document.querySelector('button').onclick = myClick;
+   function myClick(){
+    a = document.querySelector('input').value
+    if(!(a >= 1 && a <= 10)){
+    document.querySelector('div').innerHTML = 'число вне диапазона от 1 до 10'
+  } 
+  a= useRequest('https://picsum.photos', displayResult);
+}
+
+  
+ </script>
+ 
+</body>
+</html>
